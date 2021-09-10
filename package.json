@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "mongoose": "^5.13.3"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "get Info bot Discord/Twitch",
+  "main": "./src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/main.js"
+  },
+  "author": "fabien bounoir",
+  "license": "ISC"
+}
