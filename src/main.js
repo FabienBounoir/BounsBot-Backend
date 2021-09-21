@@ -5,6 +5,7 @@ const TwitchBDD = require("mongoose")
 const config = require("./config.json")
 
 const discord = require("./routes/discord.js")
+const playlist = require("./routes/playlist.js")
 const twitch = require("./routes/twitch.js")
 
 //user et password bdd
@@ -21,6 +22,7 @@ DiscordBDD.connect(`mongodb+srv://${userDB}:${passwordDB}@levelbounsbot.1h1zt.mo
 
 //route
 app.use("/discord", discord)
+app.use("/playlist", playlist)
 app.use("/twitch", twitch)
 
 app.listen(process.env.PORT || config.port)
