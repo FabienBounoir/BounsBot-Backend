@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+var bodyParser = require('body-parser')
 const DiscordBDD = require("mongoose")
 const TwitchBDD = require("mongoose")
 const config = require("./config.json")
@@ -12,6 +13,8 @@ const guild = require("./routes/guild.js")
 //user et password bdd
 var userDB = process.env.USERDB || config.UserDB;
 var passwordDB = process.env.PASSWORDDB || config.PasswordDB;
+
+app.use(bodyParser.json())
 
 //connexion BDD
 DiscordBDD.connect(`mongodb+srv://${userDB}:${passwordDB}@levelbounsbot.1h1zt.mongodb.net/BounsBot?retryWrites=true&w=majority`, {
