@@ -52,7 +52,7 @@ module.exports = async function(req, res, next){
 
                 res.setHeader('Access-Control-Allow-Origin', '*');
                 res.status(200).json({
-                    "success":"mise à jour effectué"
+                    "success":"Mise à jour effectué"
                 })
             });
         }
