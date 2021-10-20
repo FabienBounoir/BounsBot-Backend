@@ -5,14 +5,15 @@ module.exports = async function checkGuild(req, res, next) {
     var config = {
         method: 'get',
         url: 'https://discord.com/api/users/@me/guilds',
-            headers: { 
-            'Authorization': 'Bearer '+req.body.accesstoken
-            }
+        headers: { 
+            'Authorization': 'Bearer ' + req.body.accesstoken,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
     };
-    
+
     const body = await axios(config).catch(error => console.log(error))
 
-    console.log(body?.status)
+    console.log(body.status)
 
     if(body?.status === 200)
     {

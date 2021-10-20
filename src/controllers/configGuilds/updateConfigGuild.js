@@ -10,6 +10,7 @@ module.exports = async function(req, res, next){
         if (erreur) 
         {
             res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Methods', 'PUT');
             res.status(500).json({
                 "erreur": erreur
             })
