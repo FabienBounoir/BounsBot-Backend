@@ -2,10 +2,6 @@ const guildConfig = require("../../models/guildConfig")
 var axios = require('axios');
 
 module.exports = async function(req, res, next){
-    // console.log(req.body)
-    // console.log(req.body.accesstoken)
-
-    console.log("arrivé a la fin")
     guildConfig.find({ "guild" : req.body.guildId }).exec((erreur, configGuild) => {
         if (erreur) 
         {
@@ -16,8 +12,6 @@ module.exports = async function(req, res, next){
             })
             return
         }
-
-        console.log(configGuild)
 
         if(configGuild.length == 0)
         {
