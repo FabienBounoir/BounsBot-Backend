@@ -1,5 +1,3 @@
-var axios = require('axios');
-
 module.exports = async function checkGuild(req, res, next) {
     console.log('Inside middleware 2');
 
