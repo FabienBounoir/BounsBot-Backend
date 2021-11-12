@@ -10,6 +10,7 @@ const discord = require("./routes/discord.js")
 const playlist = require("./routes/playlist.js")
 const twitch = require("./routes/twitch.js")
 const guild = require("./routes/guild.js")
+const bot = require("./routes/bot.js")
 
 //user et password bdd
 var userDB = process.env.USERDB || config.UserDB;
@@ -39,5 +40,6 @@ app.use("/discord", discord)
 app.use("/playlist", playlist)
 app.use("/twitch", twitch)
 app.use("/guild", guild)
+app.use("/bot", bot)
 
 app.listen(process.env.PORT || config.port)

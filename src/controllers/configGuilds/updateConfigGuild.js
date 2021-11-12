@@ -30,6 +30,7 @@ module.exports = async function(req, res, next){
                 radio: req.body.radio,
                 playlist: req.body.playlist,
                 fun: req.body.fun,
+                logChannel: req.body.logChannel,
             });
 
             config.save((err) => {
@@ -39,7 +40,7 @@ module.exports = async function(req, res, next){
         else
         {
             var myquery = { guild: req.body.guildId };
-            var newvalues = { sheesh: req.body.sheesh, heyreaction: req.body.heyreaction, rename: req.body.rename, musique: req.body.musique, radio: req.body.radio, playlist: req.body.playlist, fun: req.body.fun };
+            var newvalues = { sheesh: req.body.sheesh, heyreaction: req.body.heyreaction, rename: req.body.rename, musique: req.body.musique, radio: req.body.radio, playlist: req.body.playlist, fun: req.body.fun, logChannel: req.body.logChannel };
 
             guildConfig.updateOne(myquery, newvalues, function(err, response) {
                 if (err) 

@@ -2,6 +2,10 @@ var axios = require('axios');
 
 module.exports = async function checkGuild(req, res, next) {
     console.log('Inside middleware 1');
+
+    console.log(req)
+
+    return
     var config = {
         method: 'get',
         url: 'https://discord.com/api/users/@me/guilds',
