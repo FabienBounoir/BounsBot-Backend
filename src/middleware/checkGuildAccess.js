@@ -1,6 +1,7 @@
 var axios = require('axios');
 
 module.exports = async function checkGuild(req, res, next) {
+    console.log('Inside middleware 1');
     var config = {
         method: 'get',
         url: 'https://discord.com/api/users/@me/guilds',
@@ -14,6 +15,7 @@ module.exports = async function checkGuild(req, res, next) {
 
     if(body?.status === 200)
     {
+        console.log('if',req.body.guildId)
         const result = body.data;
 
         let guildAdmin = await result.filter(guilds => guilds.permissions === 2147483647 && guilds.id == req.body.guildId)

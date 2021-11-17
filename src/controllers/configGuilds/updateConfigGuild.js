@@ -28,7 +28,14 @@ module.exports = async function(req, res, next){
             });
 
             config.save((err) => {
-                if (err) return console.error(err);
+                if (err) 
+                {
+                    res.setHeader('Access-Control-Allow-Origin', '*');
+                    res.status(500).json({
+                        "erreur": err
+                    })
+                    return
+                }
             });
         }
         else
@@ -45,13 +52,13 @@ module.exports = async function(req, res, next){
                     })
                     return
                 }
-
-                res.setHeader('Access-Control-Allow-Origin', '*');
-                res.status(200).json({
-                    "success":"Mise à jour effectué"
-                })
             });
         }
+
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.status(200).json({
+            "success":"Mise à jour effectué"
+        })
 
     })
 };
