@@ -1,3 +1,3 @@
 module.exports = {
-    getFile: require("./getFile.js"),
+    hasGuilds: require("./hasGuilds.js"),
 }

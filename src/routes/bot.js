@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { getFile } = require("../controllers/bot")
+const { hasGuilds } = require("../controllers/bot")
 
-router.get("/getfile", getFile);
+router.get("/hasguilds", hasGuilds);
 
 module.exports = router
