@@ -2,7 +2,7 @@ const guildConfig = require("../../models/guildConfig")
 var axios = require('axios');
 
 module.exports = async function(req, res, next){
-    guildConfig.find({ "guild" : req.body.guildId }).exec((erreur, configGuild) => {
+    guildConfig.find({ "guild" : req.body.guildId, idBot: "806105506883960853" }).exec((erreur, configGuild) => {
         if (erreur) 
         {
             res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,6 +25,8 @@ module.exports = async function(req, res, next){
                 playlist: req.body.playlist,
                 fun: req.body.fun,
                 logChannel: req.body.logChannel,
+                idChannelTwitchTchat: req.body.twitchChannel,
+                chaineTwitch: req.body.chaineTwitch,
             });
 
             config.save((err) => {
