@@ -12,6 +12,7 @@ const guildconfig = new mongoose.Schema({
   musique: { type: Boolean, default: true },
   radio: { type: Boolean, default: true },
   playlist: { type: Boolean, default: true },
+  game: { type: Boolean, default: true },
   fun: { type: Boolean, default: true },
   idBot: { type: String, default: "806105506883960853" },
   welcomeActive: { type: Boolean, default: false },

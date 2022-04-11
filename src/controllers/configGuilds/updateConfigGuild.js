@@ -24,6 +24,7 @@ module.exports = async function(req, res, next){
                 radio: req.body.radio,
                 playlist: req.body.playlist,
                 fun: req.body.fun,
+                game: req.body.game,
                 logChannel: req.body.logChannel,
                 idChannelTwitchTchat: req.body.twitchChannel,
                 chaineTwitch: req.body.chaineTwitch,
