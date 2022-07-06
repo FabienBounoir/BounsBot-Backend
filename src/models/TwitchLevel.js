@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
 
-const config = require("../config.json")
-
-var userDB = process.env.USERDB || config.UserDB;
-var passwordDB = process.env.PASSWORDDB || config.PasswordDB;
+var userDB = process.env.USERDB;
+var passwordDB = process.env.PASSWORDDB;
 
 //connection BDD twitch
 const twitchConnection = mongoose.createConnection(`mongodb+srv://${userDB}:${passwordDB}@twitchbot.ghjho.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: true,
 });
 
 
@@ -19,7 +15,7 @@ const levelSchema = new mongoose.Schema({
   xp: Number,
   nbMessage: Number,
   username: String,
-  chaine : String
+  chaine: String
 }, {
   timestamps: true,
 });
