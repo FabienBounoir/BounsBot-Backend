@@ -1,10 +1,9 @@
 const guildConfig = require("../../models/guildConfig")
 var axios = require('axios');
 
-module.exports = async function(req, res, next){
-    guildConfig.find({ "guild" : req.body.guildId, idBot: "806105506883960853" }).exec((erreur, configGuild) => {
-        if (erreur) 
-        {
+module.exports = async function (req, res, next) {
+    guildConfig.find({ "guild": req.body.guildId, idBot: process.env.BOTID }).exec((erreur, configGuild) => {
+        if (erreur) {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Methods', 'PUT');
             res.status(500).json({
@@ -13,8 +12,7 @@ module.exports = async function(req, res, next){
             return
         }
 
-        if(configGuild.length == 0)
-        {
+        if (configGuild.length == 0) {
             const config = new guildConfig({
                 guild: req.body.guildId,
                 sheesh: req.body.sheesh,
@@ -25,14 +23,13 @@ module.exports = async function(req, res, next){
                 playlist: req.body.playlist,
                 fun: req.body.fun,
                 game: req.body.game,
-                logChannel: req.body.logChannel,
-                idChannelTwitchTchat: req.body.twitchChannel,
+                idChannelTwitchTchat: req.body.idChannelTwitchTchat,
                 chaineTwitch: req.body.chaineTwitch,
+                logs: req.body.logs,
             });
 
             config.save((err) => {
-                if (err) 
-                {
+                if (err) {
                     res.setHeader('Access-Control-Allow-Origin', '*');
                     res.status(500).json({
                         "erreur": err
@@ -41,14 +38,23 @@ module.exports = async function(req, res, next){
                 }
             });
         }
-        else
-        {
-            var myquery = { guild: req.body.guildId };
-            var newvalues = { sheesh: req.body.sheesh, heyreaction: req.body.heyreaction, rename: req.body.rename, musique: req.body.musique, radio: req.body.radio, playlist: req.body.playlist, fun: req.body.fun, logChannel: req.body.logChannel };
+        else {
+            var myquery = { guild: req.body.guildId, idBot: process.env.BOTID };
+            var newvalues = {
+                sheesh: req.body.sheesh,
+                heyreaction: req.body.heyreaction,
+                rename: req.body.rename,
+                musique: req.body.musique,
+                radio: req.body.radio,
+                playlist: req.body.playlist,
+                fun: req.body.fun,
+                idChannelTwitchTchat: req.body.idChannelTwitchTchat,
+                chaineTwitch: req.body.chaineTwitch,
+                logs: req.body.logs,
+            };
 
-            guildConfig.updateOne(myquery, newvalues, function(err, response) {
-                if (err) 
-                {
+            guildConfig.updateOne(myquery, newvalues, function (err, response) {
+                if (err) {
                     res.setHeader('Access-Control-Allow-Origin', '*');
                     res.status(500).json({
                         "erreur": err
@@ -60,7 +66,7 @@ module.exports = async function(req, res, next){
 
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).json({
-            "success":"Mise à jour effectué"
+            "success": "Mise à jour effectué"
         })
 
     })

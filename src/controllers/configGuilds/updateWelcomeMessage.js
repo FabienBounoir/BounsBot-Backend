@@ -1,14 +1,12 @@
 const guildConfig = require("../../models/guildConfig")
 var axios = require('axios');
 
-module.exports = async function(req, res, next){
+module.exports = async function (req, res, next) {
     let config = {}
-    try
-    {
-        config = await guildConfig.find({ "guild" : req.params.id, idBot: "806105506883960853" }).exec()
+    try {
+        config = await guildConfig.find({ "guild": req.params.id, idBot: process.env.BOTID }).exec()
     }
-    catch(error)
-    {
+    catch (error) {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'PUT');
         res.status(500).json({
@@ -16,21 +14,19 @@ module.exports = async function(req, res, next){
         })
         return
     }
-    
+
     config[0].welcomeMessage = req.body.welcomeMessage
     config[0].welcomeActive = req.body.welcomeActive
 
-    config[0].save((err) => {   
-        if (err)
-        {
+    config[0].save((err) => {
+        if (err) {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Methods', 'PUT');
             res.status(500).json({
                 "erreur": err
             })
         }
-        else
-        {
+        else {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(200).json({
                 "success": "ok"
