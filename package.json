@@ -3,12 +3,12 @@
     "axios": "^0.23.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.17.1",
-    "http": "^0.0.1-security",
-    "mongoose": "^5.13.3"
+    "mongoose": "^6.4.3"
   },
   "name": "backend",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "get Info bot Discord/Twitch",
   "main": "./src/main.js",
   "scripts": {
