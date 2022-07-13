@@ -23,6 +23,11 @@ const guildconfig = new mongoose.Schema({
     user: { type: String, default: "0" },
     ban_unban: { type: String, default: "0" },
     join_leave: { type: String, default: "0" },
+    guild: { type: String, default: "0" },
+    roles: { type: String, default: "0" },
+    channels: { type: String, default: "0" },
+    invites: { type: String, default: "0" },
+    emotes_stickers: { type: String, default: "0" },
   }
 }, {
   timestamps: true,
