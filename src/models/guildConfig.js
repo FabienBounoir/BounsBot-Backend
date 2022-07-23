@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const guildconfig = new mongoose.Schema({
   guild: String,
+  logChannel: { type: String, default: "0" },
   sheesh: { type: Boolean, default: false },
   heyreaction: { type: Boolean, default: false },
   rename: { type: Boolean, default: true },
@@ -15,8 +16,16 @@ const guildconfig = new mongoose.Schema({
   chaineTwitch: { type: String, default: "0" },
   idChannelTwitchTchat: { type: String, default: "0" },
   raid: { type: Boolean, default: false },
+  regex: { type: Array, default: [] },
+  bitrateUpdate: { type: Boolean, default: false },
+
   welcomeActive: { type: Boolean, default: false },
   welcomeMessage: { type: String, default: "Bonjour {user} et bienvenue sur le serveur {server} ! Tu es le {membercount}ème membre du serveur." },
+
+  gainRolesLevels: { type: Array, default: [] },
+  gainRolesLevelsSend: { type: String, default: "none" },
+
+
   logs: {
     message: { type: String, default: "0" },
     vocal: { type: String, default: "0" },
