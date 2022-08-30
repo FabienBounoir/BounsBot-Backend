@@ -12,12 +12,8 @@ const twitch = require("./routes/twitch.js")
 const guild = require("./routes/guild.js")
 const bot = require("./routes/bot.js")
 
-//user et password bdd
-var userDB = process.env.USERDB;
-var passwordDB = process.env.PASSWORDDB;
-
 //connexion BDD
-DiscordBDD.connect(`mongodb+srv://${userDB}:${passwordDB}@levelbounsbot.1h1zt.mongodb.net/BounsBot?retryWrites=true&w=majority`, {
+DiscordBDD.connect(process.env.DB_LINK, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 });
