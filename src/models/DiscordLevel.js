@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
 
-//schema level discord
+
 const levelSchema = new mongoose.Schema({
   identifiant: String,
-  usersame: String,
-  xp: Number,
-  nbMessage: Number,
+  username: String,
+  xp: { type: Number, default: 0 },
+  nbMessage: { type: Number, default: 0 },
   picture: String,
   banniere: String,
-  idserveur: String
+  idserveur: String,
+  idBot: { type: String, default: "1012688780471308339" },
 }, {
   timestamps: true,
 });
 
 //ajouter a la table message, les messages(name + message + timestamps)
-module.exports = mongoose.model('level', levelSchema);
+module.exports = mongoose.model('guildLevel', levelSchema);

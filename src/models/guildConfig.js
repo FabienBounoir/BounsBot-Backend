@@ -43,4 +43,4 @@ const guildconfig = new mongoose.Schema({
 });
 
 //ajouter a la table message, les messages(name + message + timestamps)
-module.exports = mongoose.model('ConfigGuild', guildconfig);
+module.exports = mongoose.model('guildConfiguration', guildconfig);
