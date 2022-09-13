@@ -19,6 +19,7 @@ const globalUserInfo = new mongoose.Schema({
     }
   },
   favoris: { type: Array, default: [] },
+  dataCollection: { type: Boolean, default: true },
 }, {
   timestamps: true,
 });
