@@ -28,11 +28,20 @@ app.use((req, res, next) => {
     next();
 });
 
-//route
 app.use("/discord", discord)
 app.use("/playlist", playlist)
 app.use("/twitch", twitch)
 app.use("/guild", guild)
 app.use("/bot", bot)
+app.get('/info', function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.status(200).json({
+        "alive": true,
+        "name": "Backend Bouns'bot",
+        "description": "Backend permettant de gérer la configuration de Bouns'bot",
+        "author": "Fabien Bouns",
+        "repository": "https://github.com/FabienBounoir/BounsBot-Backend"
+    })
+})
 
 app.listen(process.env.PORT, () => console.log("🚀 Server started on port " + process.env.PORT))
