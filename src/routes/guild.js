@@ -1,14 +1,22 @@
 const express = require("express");
 const router = express.Router();
 
-const { getConfigGuild, updateConfigGuild, getWelcomeMessage, updateWelcomeMessage } = require("../controllers/configGuilds")
+const { getConfigGuild, getDashboard, getConfigFeatures, updateConfigGuild, getWelcomeMessage, getLogs } = require("../controllers/configGuilds")
 const checkGuildAccess = require("../middleware/checkGuildAccess")
 const checkDataUpdate = require("../middleware/checkDataUpdate")
+const checkDashboardElement = require("../middleware/checkDashboardElement")
+const checkWelcomeElement = require("../middleware/checkWelcomeElement")
 
 //Mes route
 router.get("/:id", getConfigGuild);
-router.get("/:id/welcomeMessage", getWelcomeMessage);
-router.put("/:id", checkGuildAccess, checkDataUpdate, updateConfigGuild);
-router.put("/:id/welcomeMessage", checkGuildAccess, updateWelcomeMessage);
+router.get("/:id/commandtype", getDashboard);
+router.get("/:id/welcome", getWelcomeMessage);
+router.get("/:id/logs", getLogs);
+
+router.put("/:id/commandtype", checkGuildAccess, checkDashboardElement, updateConfigGuild);
+router.put("/:id/welcome", checkGuildAccess, checkWelcomeElement, updateConfigGuild);
+router.put("/:id/logs", checkGuildAccess, updateConfigGuild);
+
+router.get("/:id/features", getConfigFeatures);
 
 module.exports = router
