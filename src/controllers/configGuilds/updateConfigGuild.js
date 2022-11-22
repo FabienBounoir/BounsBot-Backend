@@ -2,74 +2,42 @@ const guildConfig = require("../../models/guildConfig")
 var axios = require('axios');
 
 module.exports = async function (req, res, next) {
-    guildConfig.find({ "guild": req.body.guildId, idBot: process.env.BOTID }).exec((erreur, configGuild) => {
-        if (erreur) {
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.setHeader('Access-Control-Allow-Methods', 'PUT');
-            res.status(500).json({
-                "erreur": erreur
-            })
-            return
-        }
+    let guildInfo = {}
+    try {
+        guildInfo = await guildConfig.findOne({ guild: req.body.guild, idBot: process.env.BOTID }).exec()
 
-        if (configGuild.length == 0) {
-            const config = new guildConfig({
-                guild: req.body.guildId,
-                sheesh: req.body.sheesh,
-                heyreaction: req.body.heyreaction,
-                rename: req.body.rename,
-                musique: req.body.musique,
-                radio: req.body.radio,
-                playlist: req.body.playlist,
-                fun: req.body.fun,
-                game: req.body.game,
-                idChannelTwitchTchat: req.body.idChannelTwitchTchat,
-                chaineTwitch: req.body.chaineTwitch,
-                logs: req.body.logs,
-            });
+        if (guildInfo) {
+            console.log("Guild Info", guildInfo)
 
-            config.save((err) => {
-                if (err) {
-                    res.setHeader('Access-Control-Allow-Origin', '*');
-                    res.status(500).json({
-                        "erreur": err
-                    })
-                    return
-                }
-            });
+            for (let key in req.body) {
+                guildInfo[key] = req.body[key]
+            }
         }
         else {
-            var myquery = { guild: req.body.guildId, idBot: process.env.BOTID };
-            var newvalues = {
-                sheesh: req.body.sheesh,
-                heyreaction: req.body.heyreaction,
-                rename: req.body.rename,
-                musique: req.body.musique,
-                radio: req.body.radio,
-                playlist: req.body.playlist,
-                fun: req.body.fun,
-                idChannelTwitchTchat: req.body.idChannelTwitchTchat,
-                chaineTwitch: req.body.chaineTwitch,
-                logs: req.body.logs,
-            };
-
-            guildConfig.updateOne(myquery, newvalues, function (err, response) {
-                if (err) {
-                    res.setHeader('Access-Control-Allow-Origin', '*');
-                    res.status(500).json({
-                        "erreur": err
-                    })
-                    return
-                }
-            });
+            guildInfo = new guildConfig(req.body);
         }
 
+        guildInfo.save((err) => {
+            if (err) {
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                return res.status(500).json({
+                    "success": false,
+                    "message": err
+                })
+            }
+        });
+    } catch (error) {
         res.setHeader('Access-Control-Allow-Origin', '*');
-        res.status(200).json({
-            "success": "Mise à jour effectué"
+        res.setHeader('Access-Control-Allow-Methods', 'PUT');
+        return res.status(500).json({
+            "success": false,
+            "message": error
         })
+    }
 
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.status(200).json({
+        "success": true,
+        "message": "Guild config updated",
     })
 };
-
-

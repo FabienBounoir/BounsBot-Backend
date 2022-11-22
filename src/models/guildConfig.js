@@ -37,7 +37,43 @@ const guildconfig = new mongoose.Schema({
     channels: { type: String, default: "0" },
     invites: { type: String, default: "0" },
     emotes_stickers: { type: String, default: "0" },
-  }
+  },
+
+  configurationFeatures: {
+    type: Array, default: [
+      {
+        name: "Global",
+        elements: [
+          {
+            name: "Tableau de bord",
+            url: "dashboard",
+          },
+          {
+            name: "Logs",
+            url: "logs",
+          }
+        ]
+      },
+      {
+        name: "Gestion du serveur",
+        elements: [
+          {
+            name: "Bienvenue",
+            url: "welcome",
+          },
+        ]
+      },
+      {
+        name: "Utilitaires",
+        elements: [
+          {
+            name: "Envoyer un message",
+            url: "guild_message",
+          },
+        ]
+      }
+    ]
+  },
 }, {
   timestamps: true,
 });

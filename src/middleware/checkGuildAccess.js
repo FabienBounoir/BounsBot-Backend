@@ -15,7 +15,7 @@ module.exports = async function checkGuild(req, res, next) {
     if (body?.status === 200) {
         const result = body.data;
 
-        let guildAdmin = await result.filter(guilds => guilds.permissions === 2147483647 && guilds.id == req.body.guildId)
+        let guildAdmin = await result.filter(guilds => guilds.permissions === 2147483647 && guilds.id == req.body.guild)
 
         if (guildAdmin.length != 0) {
             next();
