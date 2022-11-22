@@ -4,7 +4,7 @@ var axios = require('axios');
 module.exports = async function (req, res, next) {
     let config = {}
     try {
-        config = await guildConfig.find({ "guild": req.params.id, idBot: process.env.BOTID }).exec()
+        config = await guildConfig.findOne({ "guild": req.params.id, idBot: process.env.BOTID }).exec()
     }
     catch (error) {
         res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,10 +15,11 @@ module.exports = async function (req, res, next) {
         return
     }
 
-    config[0].welcomeMessage = req.body.welcomeMessage
-    config[0].welcomeActive = req.body.welcomeActive
+    config.welcomeMessage = req.body.welcomeMessage
+    config.welcomeActive = req.body.welcomeActive
 
-    config[0].save((err) => {
+
+    config.save((err) => {
         if (err) {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Methods', 'PUT');
