@@ -19,8 +19,32 @@ const guildconfig = new mongoose.Schema({
   regex: { type: Array, default: [] },
   bitrateUpdate: { type: Boolean, default: false },
 
-  welcomeActive: { type: Boolean, default: false },
-  welcomeMessage: { type: String, default: "Bonjour {user} et bienvenue sur le serveur {server} ! Tu es le {membercount}ème membre du serveur." },
+  welcome: {
+    DM: {
+      active: { type: Boolean, default: false },
+      content: { type: String, default: null },
+      embeds: {
+        type: Array,
+        default: [
+          {
+            description: "Hello {user} and welcome to the {server}! You are the {membercount} of the server.",
+            url: null,
+            color: null,
+            thumbnail: null,
+            image: null,
+            title: null,
+          },
+        ]
+      }
+    },
+    guild: {
+      active: { type: Boolean, default: false },
+      channel: { type: String, default: "0" },
+      colorAmbiance: { type: String, default: "#D89D20" },
+      colorText: { type: String, default: "#FFFFFF" },
+      background: { type: String, default: "https://media.discordapp.net/attachments/1014101467126304798/1055788116486660166/image.png" },
+    }
+  },
 
   gainRolesLevels: { type: Array, default: [] },
   gainRolesLevelsSend: { type: String, default: "none" },

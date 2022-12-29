@@ -15,9 +15,20 @@ module.exports = async function (req, res, next) {
         return
     }
 
-    config.welcomeMessage = req.body.welcomeMessage
-    config.welcomeActive = req.body.welcomeActive
+    console.log("welcome", config.welcome)
 
+    if (config.welcome) {
+        config.welcome.DM = req.body.DM
+        config.welcome.guild = req.body.GUILD
+    }
+    else {
+        config.welcome = {
+            DM: req.body.DM,
+            guild: req.body.GUILD
+        }
+    }
+
+    console.log("welcome", config.welcome)
 
     config.save((err) => {
         if (err) {
